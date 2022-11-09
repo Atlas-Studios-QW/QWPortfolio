@@ -1,0 +1,64 @@
+.title {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.socialCard {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 50px;
+}
+
+.socialTop {
+    position: absolute;
+    top: 0;
+    height: 300px;
+    width: 300px;
+    background-color: var(--accent2);
+    overflow: hidden;
+}
+
+.socialTop img {
+    width: 300px;
+}
+
+.socialBottom {
+    position: absolute;
+    bottom: 0;
+    height: 100px;
+    width: 300px;
+    background-color: var(--accent1);
+    text-align: center;
+    transition: all 0.8s;
+    overflow: hidden;
+}
+
+.socialBottom h1 {
+    line-height: 100px;
+    margin: 0;
+}
+
+.socialBottom button {
+    width: 300px;
+    height: 100px;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 150%;
+    font-weight: 600;
+}
+
+.socialBottom button:hover {
+    transition: all 0.2s;
+    transform: scale(1.05);
+}
+
+.socialBottom:hover {
+    height: 200px;
+}

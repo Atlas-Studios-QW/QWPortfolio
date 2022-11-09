@@ -1,0 +1,99 @@
+:root {
+    --background: rgb(20, 20, 20);
+    --text: rgb(230, 230, 230);
+    --accent1: rgb(10, 20, 35);
+    --accent2: rgb(195, 80, 0);
+    --accent3: rgb(230, 230, 230);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    min-height: 100vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.navContainer {
+    width: 100%;
+    background: var(--accent1);
+    display: block;
+    color: var(--text);
+}
+
+.navContainer h1 {
+    margin: 0;
+}
+
+.navBar {
+    min-height: 25vh;
+    padding: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.navBtn {
+    height: 180px;
+    width: auto;
+    position: relative;
+    margin: 25px;
+}
+
+.navBtn h1 {
+    position: absolute;
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    line-height: 180px;
+    top: 0;
+}
+
+.navBtn img {
+    height: 180px;
+}
+
+.navBtn:hover img {
+    transition: all 0.8s ease-in-out;
+    transform: rotate(0.5turn);
+}
+
+.navFiller {
+    height: 75vh;
+    box-sizing: border-box;
+    transition: all 0.5s;
+    overflow: hidden;
+    width: min-content;
+    margin: auto;
+}
+
+.navFiller img {
+    width: 100vw;
+    margin: auto;
+    max-height: 75vh;
+}
+
+.content {
+    color: var(--text);
+    padding: 1%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    padding: 30px;
+    background-color: var(--accent1);
+    text-align: center;
+}
+
+footer a {
+    color: var(--text);
+    text-decoration: none;
+    line-height: 20px;
+}
