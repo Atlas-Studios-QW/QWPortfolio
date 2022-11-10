@@ -1,0 +1,8 @@
+form {
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    margin-top: 250px;
+    background-color: var(--accent1);
+    color: var(--text);
+}

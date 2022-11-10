@@ -1,6 +1,6 @@
 .card {
     width: 74vw;
-    margin: 13vw;
+    margin: 2vw 13vw 2vw 13vw;
     height: 15vw;
     position: relative;
     z-index: 2;
@@ -19,7 +19,7 @@
     background-color: var(--accent1);
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    z-index: 2;
 }
 
 .infoText {
@@ -52,7 +52,8 @@
 
 .infoSide:hover {
     width: 50vw;
-    transition: all 0.8s;
+    transition: all 0.5s;
+    transition-timing-function: ease;
 }
 
 .imgSide {
