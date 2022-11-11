@@ -1,6 +1,8 @@
 <?php
 include("../php/include.php");
 ?>
+
+<link rel="stylesheet" href="../css/home.css">
 <title>Home</title>
 
 <div class="content">

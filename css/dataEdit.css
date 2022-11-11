@@ -13,7 +13,6 @@ body {
 .container {
     width: max-content;
     height: max-content;
-    margin-top: 100px;
     background-color: var(--accent1);
     color: var(--text);
     border-bottom: solid var(--accent2);
@@ -21,11 +20,25 @@ body {
     text-align: center;
 }
 
-form input {
+button, form input {
     background: none;
     background-color: rgba(100, 100, 100, 0.25);
     border: none;
     border-bottom: solid var(--accent2);
     color: var(--text);
     padding: 5px;
+    transition: all 250ms;
+    transition-timing-function: ease;
+}
+
+button:hover, form input:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 400%;
+}
+
+h2 {
+    font-size: 200%;
 }

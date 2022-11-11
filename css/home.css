@@ -45,6 +45,7 @@
     width: 100%;
     transition: all 500ms;
     transition-timing-function: ease;
+    white-space: nowrap;
 }
 
 .cardBtn {

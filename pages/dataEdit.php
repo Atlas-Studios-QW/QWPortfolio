@@ -57,7 +57,11 @@ function Upload($con, $target_dir)
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $con->query("INSERT INTO HomeCards (Title, Link, ImgName) VALUES ('{$_POST['title']}', '{$_POST['link']}', '{$_FILES["fileToUpload"]["name"]}')");
+            if (isset($_POST['HomeCard'])) {
+                $con->query("INSERT INTO HomeCards (Title, Link, ImgName) VALUES ('{$_POST['title']}', '{$_POST['link']}', '{$_FILES["fileToUpload"]["name"]}')");
+            } else if (isset($_POST['ContactCard'])) {
+                $con->query('INSERT INTO ContactCards (Title, SubTitle, Link, ImgName) VALUES ("'. $_POST['title'] . '","'. $_POST['subTitle']. '", "' .$_POST['link'].'", "'.$_FILES["fileToUpload"]["name"].'")');
+            }
             return "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
         } else {
             return "Sorry, there was an error uploading your file.";
@@ -77,24 +81,73 @@ function Upload($con, $target_dir)
     <title>Data Edit</title>
     <link rel="stylesheet" href="../css/all.css">
     <link rel="stylesheet" href="../css/dataEdit.css">
+    <script src="../js/scripts.js"></script>
 </head>
 
 <body>
     <div class="container">
+        <button onclick="redirect('home.php')">Return</button>
+        <h1>Cards</h1>
+        <h2>Home</h2>
         <?php
-            $con->query("SELECT ");
+            $result = $con->query("SELECT * FROM HomeCards");
+            echo "<form method='POST'>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "ID: " . $row['ID'] . " | Title: " . $row['Title'] . " | <input type='submit' name='RemoveHome".$row['ID']."' value='Remove' /><br>";
+            }
+            echo "</form>";
         ?>
+        <h2>New Card</h2>
         <form method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Title" required>
             <input type="link" name="link" placeholder="Link" required>
             <input type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="submit" name="HomeCard" value="Add New Card">
         </form>
+        <h2>Contact</h2>
+        <?php
+            $result = $con->query("SELECT * FROM ContactCards");
+            echo "<form method='POST'>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "ID: " . $row['ID'] . " | Title: " . $row['Title'] . " | <input type='submit' name='RemoveContact".$row['ID']."' value='Remove' /><br>";
+            }
+            echo "</form>";
+        ?>
+        <h2>New Card</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="subTitle" name="subTitle" placeholder="Subtitle" required>
+            <input type="link" name="link" placeholder="Link" required>
+            <input type="file" name="fileToUpload" id="fileToUpload" required>
+            <input type="submit" name="ContactCard" value="Add New Card">
+        </form>
 
         <?php
-        if (isset($_POST['HomeCard'])) {
-            echo Upload($con, "../media/database/home/");
+        if (isset($_POST)) {
+            $Key0 = array_keys($_POST)[0];
+            if (strpos($Key0, 'Remove') !== false) {
+                if (strpos($Key0, 'Home') !== false) {
+                    $ID = str_replace("RemoveHome", "", $Key0);
+                    $FileName = $con->query("SELECT ImgName FROM HomeCards WHERE ID = " . $ID);
+                    unlink("../media/database/home/" . $FileName);
+                    $con->query("DELETE FROM HomeCards WHERE ID = ". $ID);
+                } else if (strpos($Key0, "Contact") !== false) {
+                    print("Test");
+                    $ID = str_replace("RemoveContact", "", $Key0);
+                    $FileName = $con->query("SELECT ImgName FROM ContactCards WHERE ID = " . $ID);
+                    unlink("../media/database/contact/" . $FileName);
+                    $con->query("DELETE FROM ContactCards WHERE ID = ". $ID);
+                }
+            }
+            else {
+                if (isset($_POST['HomeCard'])) {
+                    echo Upload($con, "../media/database/home/");
+                } else if (isset($_POST['ContactCard'])) {
+                    echo Upload($con, "../media/database/contact/");
+                }
+            }
         }
+
         ?>
     </div>
 </body>
