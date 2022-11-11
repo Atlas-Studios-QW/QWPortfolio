@@ -19,7 +19,7 @@
     <?php
     session_start();
     if ($_SESSION['loggedin']) {
-        include("dataEdit.php");
+        header("Location: dataEdit.php");
     }
     if (isset($_POST['Login'])) {
         include("../php/authenticate.php");

@@ -2,4 +2,4 @@
 include("../php/include.php");
 ?>
 
-<title>Contact</title>
+<title>My Work</title>

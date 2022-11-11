@@ -17,74 +17,8 @@ body {
     width: 100vw;
 }
 
-.navContainer {
-    width: 100%;
-    background: var(--accent1);
-    display: block;
-    color: var(--text);
-}
-
-.navContainer h1 {
-    margin: 0;
-}
-
-.navBar {
-    min-height: 25vh;
-    padding: 1%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-}
-
-.navBtn {
-    height: 180px;
-    width: auto;
-    position: relative;
-    margin: 25px;
-}
-
-.navBtn h1 {
-    position: absolute;
-    width: 100%;
-    height: 180px;
-    text-align: center;
-    line-height: 180px;
-    top: 0;
-}
-
-.navBtn img {
-    height: 180px;
-}
-
-.navBtn:hover img {
-    transition: all 0.8s ease-in-out;
-    transform: rotate(0.5turn);
-}
-
-.navFiller {
-    height: 75vh;
-    box-sizing: border-box;
-    transition: all 0.5s;
-    overflow: hidden;
-    width: min-content;
-    margin: auto;
-}
-
-.navFiller img {
-    width: 100vw;
-    margin: auto;
-    max-height: 75vh;
-}
-
-.content {
-    color: var(--text);
-    padding: 1%;
-    padding-bottom: 70px;
-}
-
 footer {
+    display: block;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -98,4 +32,74 @@ footer a {
     color: var(--text);
     text-decoration: none;
     line-height: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    background-color: var(--accent1);
+    width: 100%;
+    position: relative;
+}
+
+.logoContainer {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 70vh;
+    width: 100%;
+}
+
+.logo {
+    object-fit: cover;
+    max-height: 70vh;
+}
+
+.navContainer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    height: 10vh;
+    width: 100%;
+    max-width: 500px;
+}
+
+.navContainer::after {
+    content: "";
+    position: absolute;
+    margin: 0 auto 0 auto;
+    width: 80%;
+    border-top: solid var(--accent2);
+}
+
+.navBtn {
+    height: 100%;
+    aspect-ratio: 1;
+    display: block;
+    position: relative;
+}
+
+.navBtnImg {
+    width: 60%;
+    aspect-ratio: 1;
+    padding: 20%;
+}
+
+.navBtnImg:hover {
+    transform: scale(1.1);
+    transition: all 200ms;
+    transition-timing-function: ease;
+}
+
+.navBtnBtn {
+    background: none;
+    border: none;
+}
+
+.content {
+    display: block;
+    padding: 40px 2.5vw 100px 2.5vw;
 }

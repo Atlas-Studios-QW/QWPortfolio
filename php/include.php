@@ -1,3 +1,18 @@
+<?php
+    session_start();
+
+    $DATABASE_HOST = 'localhost';
+    $DATABASE_USER = 'u136788p130946_admin';
+    $DATABASE_PASS = '12345678';
+    $DATABASE_NAME = 'u136788p130946_Portfolio';
+    
+    $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+    
+    if ( mysqli_connect_errno() ) {
+        exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,19 +28,16 @@
 </head>
 
 <body>
-    <nav class="navContainer" id="navContainer">
-        <div class="navBar">
-            <div class="navBtn"><img src="../media/hexagonWhite.png">
-                <h1 id="home.html">Home</h1>
-            </div>
-            <div class="navBtn"><img src="../media/hexagonOrange.png">
-                <h1 id="about.html">About</h1>
-            </div>
-            <div class="navBtn"><img src="../media/hexagonOrange.png">
-                <h1 id="contact.html">Contact</h1>
-            </div>
+    <nav>
+        <div class="logoContainer">
+            <img src="../media/icons/Atlas Industries.svg" class="logo">
         </div>
-        <div class="navFiller" id="filler"><img src="../media/Atlas Industries.svg"></div>
+        <div class="navContainer">
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('home.php')"><img class="navBtnImg" src="../media/icons/home.png"></button></div>
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('projects.php')"><img class="navBtnImg" src="../media/icons/mywork.png"></button></div>
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('about.php')"><img class="navBtnImg" src="../media/icons/about.png"></button></div>
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('contact.php')"><img class="navBtnImg" src="../media/icons/contact.png"></button></div>
+        </div>
     </nav>
 </body>
 
