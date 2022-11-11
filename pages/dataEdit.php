@@ -57,8 +57,8 @@ function Upload($con, $target_dir)
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            return "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
             $con->query("INSERT INTO HomeCards (Title, Link, ImgName) VALUES ('{$_POST['title']}', '{$_POST['link']}', '{$_FILES["fileToUpload"]["name"]}')");
+            return "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
         } else {
             return "Sorry, there was an error uploading your file.";
         }
@@ -93,7 +93,7 @@ function Upload($con, $target_dir)
 
         <?php
         if (isset($_POST['HomeCard'])) {
-            echo Upload($con, "../media/database/Home_");
+            echo Upload($con, "../media/database/home/");
         }
         ?>
     </div>
