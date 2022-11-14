@@ -1,0 +1,73 @@
+.card {
+    width: 74vw;
+    margin: 13vw;
+    height: 30vw;
+    position: relative;
+    z-index: 2;
+}
+
+.infoSide, .imgSide {
+    width: 37vw;
+    height: 30vw;
+    margin: 0;
+    position: absolute;
+    float: left;
+}
+
+.infoSide {
+    left: 0;
+    background-color: var(--accent1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.infoText {
+    box-sizing: border-box;
+    padding: 1vw;
+    margin: 0;
+    width: 35vw;
+    font-weight: 600;
+    font-size: 200%;
+    line-height: 28vw;
+    text-align: center;
+}
+
+.hoverText {
+    position: absolute;
+    left: 37vw;
+    line-height: 10vw;
+    margin: 0;
+    text-align: center;
+    width: 13vw;
+    border: none;
+    background: none;
+    color: var(--text);
+    height: 30vw;
+}
+
+.hoverText h1 {
+    margin: 0;
+}
+
+.infoSide:hover {
+    width: 50vw;
+    transition: all 0.8s;
+}
+
+.imgSide {
+    right: 0;
+    background-color: var(--accent2);
+    overflow: hidden;
+}
+
+.imgSide img {
+    height: 30vw;
+    position: absolute;
+    right: 0;
+}
+
+.link {
+    width: 74vw;
+    height: 30vw;
+}
