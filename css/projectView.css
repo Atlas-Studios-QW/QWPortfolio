@@ -1,0 +1,12 @@
+.content {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.PJmain {
+    grid-column: 1;
+}
+
+.PJside {
+    grid-column: 2;
+}
