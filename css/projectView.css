@@ -1,12 +1,53 @@
-.content {
+.PJbody {
     display: grid;
+    grid-template-rows: min-content auto;
     grid-template-columns: 4fr 1fr;
+    padding: 10px;
+}
+
+.PJhead {
+    grid-column: 1;
+    grid-row: 1;
+    border-bottom: solid var(--accent2);
+}
+
+.PJhead > h1 {
+    color: var(--accent2);
+    width: 100%;
+    border-bottom: solid var(--accent2);
+    margin: 0;
+}
+
+.PJhead > p {
+    color: var(--text);
+}
+
+.PJlinks {
+    display: flex;
+    justify-content: center;
+}
+
+.PJlinks > a {
+    margin: 5px;
+    border: solid var(--accent2);
+    padding: 5px;
+    transition: 100ms ease;
+}
+
+.PJlinks > a:hover {
+    transform: scale(1.05);
 }
 
 .PJmain {
     grid-column: 1;
+    grid-row: 2;
 }
 
 .PJside {
     grid-column: 2;
+    grid-row: 1/3;
+}
+
+.CLcard {
+    
 }
