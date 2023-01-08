@@ -20,7 +20,7 @@ body {
     text-align: center;
 }
 
-button, form input {
+button, input, textarea {
     background: none;
     background-color: rgba(100, 100, 100, 0.25);
     border: none;
@@ -31,7 +31,7 @@ button, form input {
     transition-timing-function: ease;
 }
 
-button:hover, form input:hover {
+button:hover, input:hover, textarea:hover {
     transform: scale(1.05);
 }
 
@@ -40,5 +40,11 @@ h1 {
 }
 
 h2 {
+    margin-top: 100px;
+    border-top: solid var(--accent2);
     font-size: 200%;
+}
+
+h3 {
+    margin-top: 25px;
 }

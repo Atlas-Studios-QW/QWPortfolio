@@ -1,0 +1,90 @@
+.aboutMe {
+    width: 90%;
+    height: max-content;
+    color: var(--text);
+    margin: auto;
+    background-color: var(--accent4);
+    border-bottom: solid var(--accent2);
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.aboutMe > h1 {
+    margin:  0;
+    color: var(--accent2);
+}
+
+.postsTitle {
+    text-align: center;
+    color: var(--text);
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: auto;
+    height: max-content;
+    position: relative;
+}
+
+.postCard {
+    width: 300px;
+    max-width: 100%;
+    aspect-ratio: 1;
+    background-color: var(--accent4);
+    border-left: solid var(--accent2);
+    border-right: solid var(--accent2);
+    box-sizing: border-box;
+    padding: 10px;
+    color: var(--text);
+    transition: ease 200ms;
+    overflow: hidden;
+    position: relative;
+    margin: 25px;
+}
+
+.postCard > h1 {
+    color: var(--accent2);
+}
+
+.postCard > p {
+    position: absolute;
+    bottom: 0;
+    left: -100px;
+    transition: ease-out 100ms;
+    color: var(--accent2);
+}
+
+.postCard:hover {
+    transform: scale(1.05);
+}
+
+.postCard:hover > p {
+    left: 10px;
+}
+
+.post {
+    width: 90%;
+    margin: auto;
+    color: var(--text);
+}
+
+.postTitle {
+    border-bottom: solid var(--accent2);
+    color: var(--accent2);
+    margin: 0;
+}
+
+.post > h1,.post > h2,.post > h3,.post > h4,.post > h5 {
+    color: var(--accent2);
+}
+
+.postDescription {
+    background-color: var(--accent4);
+    padding: 25px 5px 25px 5px;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--text);
+}

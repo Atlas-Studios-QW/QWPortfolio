@@ -1,7 +1,7 @@
 .description {
     color: var(--text);
     width: 50%;
-    min-width: 200px;
+    min-width: 250px;
     font-size: 1.5rem;
     margin: 0 auto 25px auto;
     background-color: var(--accent4);
@@ -28,7 +28,7 @@
     overflow: hidden;
     border: none;
     padding: 0;
-    margin: 0;
+    margin: 10px;
 }
 
 .cardBackground {

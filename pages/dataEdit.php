@@ -97,7 +97,7 @@ function Upload($con, $target_dir)
             }
             echo "</form>";
         ?>
-        <h2>New Card</h2>
+        <h3>New Card</h3>
         <form method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Title" required>
             <input type="link" name="link" placeholder="Link" required>
@@ -113,14 +113,32 @@ function Upload($con, $target_dir)
             }
             echo "</form>";
         ?>
-        <h2>New Card</h2>
+        <h3>New Card</h3>
         <form method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Title" required>
-            <input type="subTitle" name="subTitle" placeholder="Subtitle" required>
+            <input type="text" name="subTitle" placeholder="Subtitle" required>
             <input type="link" name="link" placeholder="Link" required>
             <input type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="submit" name="ContactCard" value="Add New Card">
         </form>
+
+        <h2>Posts</h2>
+        <?php
+            $result = $con->query("SELECT * FROM Posts");
+            echo "<form method='POST'>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "ID: " . $row['ID'] . " | Title: " . $row['Title'] . " | <input type='submit' name='RemovePost".$row['ID']."' value='Remove' /><br>";
+            }
+            echo "</form>";
+        ?>
+        <h3>New Card</h3>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="description" placeholder="Description" required>
+            <textarea name="content" required>Content</textarea>
+            <input type="submit" name="Post" value="Add New Card">
+        </form>
+
 
         <?php
         if (isset($_POST)) {
@@ -132,11 +150,13 @@ function Upload($con, $target_dir)
                     unlink("../media/database/home/" . $FileName);
                     $con->query("DELETE FROM HomeCards WHERE ID = ". $ID);
                 } else if (strpos($Key0, "Contact") !== false) {
-                    print("Test");
                     $ID = str_replace("RemoveContact", "", $Key0);
                     $FileName = $con->query("SELECT ImgName FROM ContactCards WHERE ID = " . $ID);
                     unlink("../media/database/contact/" . $FileName);
                     $con->query("DELETE FROM ContactCards WHERE ID = ". $ID);
+                } else if (strpos($Key0, "Post") !== false) {
+                    $ID = str_replace("RemovePost", "", $Key0);
+                    $con->query("DELETE FROM Posts WHERE ID = ". $ID);
                 }
             }
             else {
@@ -144,6 +164,8 @@ function Upload($con, $target_dir)
                     echo Upload($con, "../media/database/home/");
                 } else if (isset($_POST['ContactCard'])) {
                     echo Upload($con, "../media/database/contact/");
+                } else if (isset($_POST['Post'])) {
+                    $con->query("INSERT INTO Posts (Title, Description, Content) VALUES ('".$_POST['title']."','".$_POST['description']."','".$_POST['content']."')");
                 }
             }
         }
