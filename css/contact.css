@@ -36,7 +36,7 @@
     top: 0;
     margin: 0;
     text-align: center;
-    background-color: rgba(100, 100, 100, 0.25);
+    background-color: rgba(0, 0, 0, 0.75);
     border-bottom: solid var(--accent2);
     transform: translate(-130px, 10px) rotate(-25deg);
 }
@@ -44,7 +44,7 @@
 .cardTitle::after {
     content: "";
     height: 50px;
-    background-color: rgba(100, 100, 100, 0.25);
+    background-color: rgba(0, 0, 0, 0.75);
     position: absolute;
     top: -50px;
     left: 0;
@@ -64,7 +64,7 @@
     bottom: -50%;
     border-top: solid var(--accent2);
     box-sizing: border-box;
-    background-color: rgba(100, 100, 100, 0.25);
+    background-color: rgba(0, 0, 0, 0.75);
     transition: all 500ms;
     transition-timing-function: ease;
     width: 100%;

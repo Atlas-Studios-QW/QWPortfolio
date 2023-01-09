@@ -21,7 +21,7 @@ if (mysqli_connect_errno()) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Quillan Wielhouwer">
-    <meta name="keywords" content="Atlas Industries, atlasindustries, Atlas, Developer, Website, Quillan, Quillan Wielhouwer, Wielhouwer">
+    <meta name="keywords" content="Atlas Industries, atlasindustries, Atlas, Developer, Portfolio, Quillan, Quillan Wielhouwer, Wielhouwer">
     <meta name="description" content="Portfolio of Quillan Wielhouwer, a starting game developer and student.">
     <link rel="stylesheet" href="../css/all.css">
     <link rel="icon" type="image/x-icon" href="../media/icons/favicon.ico">
@@ -34,6 +34,12 @@ if (mysqli_connect_errno()) {
     <nav>
         <div class="logoContainer">
             <img src="../media/icons/Atlas Industries.svg" class="logo" alt="Atlas Industries">
+        </div>
+        <div class="navLocation">
+            <h1 id="navLocationText"></h1>
+            <script>
+                document.getElementById("navLocationText").innerHTML = location.href.split("/").slice(-1)[0].replace(".php","").toUpperCase();
+            </script>
         </div>
         <div class="navContainer">
             <div class="navBtn"><button class="navBtnBtn" onclick="redirect('home.php')"><img class="navBtnImg" src="../media/icons/home.png" alt="Atlas Industries Home"></button></div>
