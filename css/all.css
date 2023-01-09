@@ -4,7 +4,16 @@
     --accent1: rgb(10, 20, 35);
     --accent2: rgb(195, 80, 0);
     --accent3: rgb(230, 230, 230);
-    --accent4: rgba(100, 100, 100, 0.2);
+    --accent4: rgba(0, 0, 0, 0.5);
+}
+
+@font-face {
+    font-family: GoodTimes;
+    src: url("../media/fonts/goodtimes.otf") format("opentype");
+}
+
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
@@ -12,7 +21,6 @@ body {
     padding: 0;
     background-color: var(--background);
     min-height: 100vh;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     overflow-x: hidden;
     position: relative;
     width: 100vw;
@@ -67,9 +75,10 @@ nav {
     align-items: flex-end;
 }
 
-.navLocation > h1 {
+.navLocation>h1 {
     margin: 2px;
     color: var(--text);
+    font-family: GoodTimes;
 }
 
 .navContainer {

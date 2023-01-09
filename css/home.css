@@ -48,7 +48,7 @@
     bottom: 0;
     margin: 0;
     text-align: center;
-    background-color: rgba(100, 100, 100, 0.25);
+    background-color: var(--accent4);
     border-top: solid var(--accent2);
 }
 
@@ -58,6 +58,7 @@
     transition: all 500ms;
     transition-timing-function: ease;
     white-space: nowrap;
+    font-family: GoodTimes;
 }
 
 .cardBtn {

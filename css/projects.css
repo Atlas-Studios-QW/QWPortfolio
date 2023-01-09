@@ -27,7 +27,7 @@
     justify-content: center;
 }
 
-.PJimg > img {
+.PJimg>img {
     height: 100%;
 
 }
@@ -46,6 +46,7 @@
 
 .PJtitle>h2 {
     margin: 0;
+    font-family: GoodTimes;
 }
 
 .PJdescription {
