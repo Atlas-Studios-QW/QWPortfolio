@@ -146,14 +146,14 @@ function Upload($con, $target_dir)
             if (strpos($Key0, 'Remove') !== false) {
                 if (strpos($Key0, 'Home') !== false) {
                     $ID = str_replace("RemoveHome", "", $Key0);
+                    $con->query("DELETE FROM HomeCards WHERE ID = ". $ID);
                     $FileName = $con->query("SELECT ImgName FROM HomeCards WHERE ID = " . $ID);
                     unlink("../media/database/home/" . $FileName);
-                    $con->query("DELETE FROM HomeCards WHERE ID = ". $ID);
                 } else if (strpos($Key0, "Contact") !== false) {
                     $ID = str_replace("RemoveContact", "", $Key0);
+                    $con->query("DELETE FROM ContactCards WHERE ID = ". $ID);
                     $FileName = $con->query("SELECT ImgName FROM ContactCards WHERE ID = " . $ID);
                     unlink("../media/database/contact/" . $FileName);
-                    $con->query("DELETE FROM ContactCards WHERE ID = ". $ID);
                 } else if (strpos($Key0, "Post") !== false) {
                     $ID = str_replace("RemovePost", "", $Key0);
                     $con->query("DELETE FROM Posts WHERE ID = ". $ID);
