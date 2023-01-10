@@ -11,15 +11,17 @@
     border-bottom: solid var(--accent2);
 }
 
-.PJhead > h1 {
+.PJhead>h1 {
     color: var(--accent2);
     width: 100%;
     border-bottom: solid var(--accent2);
     margin: 0;
+    font-family: GoodTimes;
 }
 
-.PJhead > p {
+.PJhead>p {
     color: var(--text);
+    font-size: 125%;
 }
 
 .PJlinks {
@@ -27,20 +29,30 @@
     justify-content: center;
 }
 
-.PJlinks > a {
+.PJlinks>a {
     margin: 5px;
-    border: solid var(--accent2);
-    padding: 5px;
+    font-family: GoodTimes;
+    border-bottom: solid var(--accent2);
+    background-color: var(--accent1);
+    padding: 30px;
+    margin: 20px;
+    font-size: 150%;
     transition: 100ms ease;
 }
 
-.PJlinks > a:hover {
+.PJlinks>a:hover {
     transform: scale(1.05);
 }
 
 .PJmain {
     grid-column: 1;
     grid-row: 2;
+}
+
+.PJmain>h1 {
+    font-family: GoodTimes;
+    color: var(--accent2);
+    margin-top: 40px;
 }
 
 .PJside {
