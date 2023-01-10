@@ -18,8 +18,5 @@ include("../php/include.php");
             <button class="PJbtn PJreadmore" onclick="redirect('projectView.php?projectID=1')">Find out more!</button>
             <button class="PJbtn PJexternal" onclick="redirect('atlas-h.itch.io')">External Link</button>
         </div>
-        <div class="PJcard">
-
-        </div>
     </div>
 </div>

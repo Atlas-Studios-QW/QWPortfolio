@@ -25,22 +25,33 @@
 }
 
 .PJlinks {
-    display: flex;
-    justify-content: center;
+    width: 100%;
 }
 
-.PJlinks>a {
+.DownloadLinks, .ExternalLinks {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.DownloadLinks > a, .ExternalLinks > a {
     margin: 5px;
     font-family: GoodTimes;
+    text-align: center;
     border-bottom: solid var(--accent2);
     background-color: var(--accent1);
     padding: 30px;
-    margin: 20px;
+    margin: 10px;
     font-size: 150%;
     transition: 100ms ease;
 }
 
-.PJlinks>a:hover {
+.DownloadLinks > a {
+    width: calc(100%/3);
+}
+
+.PJlinks > a:hover {
     transform: scale(1.05);
 }
 
@@ -58,4 +69,45 @@
 .PJside {
     grid-column: 2;
     grid-row: 1/3;
+}
+
+.CLcard {
+    background-color: var(--accent4);
+    position: relative;
+    height: min-content;
+    min-height: 100px;
+}
+
+.CLtitle {
+    position: absolute;
+    width: 60%;
+    color: var(--accent2);
+    padding: 10px 10px 10px 0;
+    border-bottom: solid var(--accent2);
+    margin: 0 0 0 10px;
+    font-family: GoodTimes;
+}
+
+.CLdate {
+    position: absolute;
+    width: 40%;
+    color: var(--accent2);
+    padding: 10px 0 10px 10px;
+    border-bottom: solid var(--accent2);
+    right: 0;
+    margin: 0 10px 0 0;
+    text-align: right;
+    font-family: GoodTimes;
+}
+
+.CLdescription {
+    box-sizing: border-box;
+    padding: 70px 10px 10px 10px;
+    color: var(--text);
+}
+
+.CLlist {
+    box-sizing: border-box;
+    padding: 0 10px 10px 30px;
+    color: var(--text);
 }

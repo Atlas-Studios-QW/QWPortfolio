@@ -88,6 +88,7 @@ function Upload($con, $target_dir)
     <div class="container">
         <button onclick="redirect('home.php')">Return</button>
         <h1>Cards</h1>
+        <!-- HOME CARDS -->
         <h2>Home</h2>
         <?php
             $result = $con->query("SELECT * FROM HomeCards");
@@ -104,6 +105,8 @@ function Upload($con, $target_dir)
             <input type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="submit" name="HomeCard" value="Add New Card">
         </form>
+
+        <!-- CONTACT CARDS -->
         <h2>Contact</h2>
         <?php
             $result = $con->query("SELECT * FROM ContactCards");
@@ -122,6 +125,7 @@ function Upload($con, $target_dir)
             <input type="submit" name="ContactCard" value="Add New Card">
         </form>
 
+        <!-- ABOUT ME POSTS -->
         <h2>Posts</h2>
         <?php
             $result = $con->query("SELECT * FROM Posts");
@@ -139,6 +143,45 @@ function Upload($con, $target_dir)
             <input type="submit" name="Post" value="Add New Card">
         </form>
 
+        <!-- PROJECTS -->
+        <h2>Projects</h2>
+        <?php
+            $result = $con->query("SELECT * FROM Projects");
+            echo "<form method='POST'>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "ID: " . $row['ID'] . " | Title: " . $row['Title'] . " | <input type='submit' name='RemoveProject".$row['ID']."' value='Remove' /><br>";
+            }
+            echo "</form>";
+        ?>
+        <h3>New Card</h3>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="description" placeholder="Description" required>
+            <textarea name="content" required placeholder="Content"></textarea>
+            <input type="submit" name="Project" value="Add New Card">
+        </form>
+
+        <!-- CHANGELOGS -->
+        <h2>Changelogs</h2>
+        <?php
+            $result = $con->query("SELECT * FROM ChangeLogs");
+            echo "<form method='POST'>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "ID: " . $row['ID'] . " | Title: " . $row['Title'] . " | <input type='submit' name='RemoveChangelog".$row['ID']."' value='Remove' /><br>";
+            }
+            echo "</form>";
+        ?>
+        <h3>New Card</h3>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="number" name="projectID" placeholder="Project ID" required>
+            <textarea name="description" required placeholder="Description"></textarea>
+            <div id="changeInputs"></div>
+            <button type="button" onclick="addChangeInput()">Add Item</button>
+            <input type="submit" name="Changelog" value="Add New Card">
+        </form>
+
+
 
         <?php
         if (isset($_POST)) {
@@ -149,23 +192,41 @@ function Upload($con, $target_dir)
                     $con->query("DELETE FROM HomeCards WHERE ID = ". $ID);
                     $FileName = $con->query("SELECT ImgName FROM HomeCards WHERE ID = " . $ID);
                     unlink("../media/database/home/" . $FileName);
-                } else if (strpos($Key0, "Contact") !== false) {
+                } 
+                else if (strpos($Key0, "Contact") !== false) {
                     $ID = str_replace("RemoveContact", "", $Key0);
                     $con->query("DELETE FROM ContactCards WHERE ID = ". $ID);
                     $FileName = $con->query("SELECT ImgName FROM ContactCards WHERE ID = " . $ID);
                     unlink("../media/database/contact/" . $FileName);
-                } else if (strpos($Key0, "Post") !== false) {
+                } 
+                else if (strpos($Key0, "Post") !== false) {
                     $ID = str_replace("RemovePost", "", $Key0);
                     $con->query("DELETE FROM Posts WHERE ID = ". $ID);
+                } 
+                else if (strpos($Key0, "Project") !== false) {
+                    $ID = str_replace("RemoveProject", "", $Key0);
+                    $con->query("DELETE FROM Projects WHERE ID = ". $ID);
+                } 
+                else if (strpos($Key0, "Changelog") !== false) {
+                    $ID = str_replace("RemoveChangelog", "", $Key0);
+                    $con->query("DELETE FROM Changelogs WHERE ID = ". $ID);
                 }
             }
             else {
                 if (isset($_POST['HomeCard'])) {
                     echo Upload($con, "../media/database/home/");
-                } else if (isset($_POST['ContactCard'])) {
+                } 
+                else if (isset($_POST['ContactCard'])) {
                     echo Upload($con, "../media/database/contact/");
-                } else if (isset($_POST['Post'])) {
-                    $con->query("INSERT INTO Posts (Title, Description, Content) VALUES ('".$_POST['title']."','".$_POST['description']."','".$_POST['content']."')");
+                } 
+                else if (isset($_POST['Post'])) {
+                    $con->query("INSERT INTO Posts (Title, Description, content) VALUES ('".$_POST['title']."','".$_POST['description']."','".$_POST['content']."')");
+                }
+                else if (isset($_POST['Project'])) {
+                    $con->query("INSERT INTO Projects (Title, Description) VALUES ('".$_POST['title']."','".$_POST['description']."','".$_POST['content']."')");
+                }
+                else if (isset($_POST['Changelog'])) {
+                    $con->query("INSERT INTO Chnagelogs (Title, Description) VALUES ('".$_POST['title']."','".$_POST['description']."','".$_POST['content']."')");
                 }
             }
         }
