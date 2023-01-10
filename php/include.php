@@ -21,19 +21,19 @@ if (mysqli_connect_errno()) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Quillan Wielhouwer">
-    <meta name="keywords" content="Atlas Industries, atlasindustries, Atlas, Developer, Portfolio, Quillan, Quillan Wielhouwer, Wielhouwer">
+    <meta name="keywords" content="Atlas Studios, Atlas, Developer, Portfolio, Quillan, Quillan Wielhouwer, Wielhouwer">
     <meta name="description" content="Portfolio of Quillan Wielhouwer, a starting game developer and student.">
     <link rel="stylesheet" href="../css/all.css">
     <link rel="icon" type="image/x-icon" href="../media/icons/favicon.ico">
     <script src="../js/scripts.js"></script>
-    <title>Atlas Industries</title>
+    <title>Atlas Studios</title>
 </head>
 
 <body>
-    <h1 style="display:none;">Atlas Industries, Portfolio Quillan Wielhouwer</h1>
+    <h1 style="display:none;">Atlas Studios, Portfolio Quillan Wielhouwer</h1>
     <nav>
         <div class="logoContainer">
-            <img src="../media/icons/Atlas Industries.svg" class="logo" alt="Atlas Industries">
+            <img src="../media/icons/AtlasStudios.png" class="logo" alt="Atlas Studios">
         </div>
         <div class="navLocation">
             <h1 id="navLocationText"></h1>
@@ -42,10 +42,10 @@ if (mysqli_connect_errno()) {
             </script>
         </div>
         <div class="navContainer">
-            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('home.php')"><img class="navBtnImg" src="../media/icons/home.png" alt="Atlas Industries Home"></button></div>
-            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('projects.php')"><img class="navBtnImg" src="../media/icons/mywork.png" alt="Atlas Industries My Work"></button></div>
-            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('about.php')"><img class="navBtnImg" src="../media/icons/about.png" alt="Atlas Industries About"></button></div>
-            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('contact.php')"><img class="navBtnImg" src="../media/icons/contact.png" alt="Atlas Industries Contact"></button></div>
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('home.php')"><img class="navBtnImg" src="../media/icons/home.png" alt="Atlas Studios Home"></button></div>
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('projects.php')"><img class="navBtnImg" src="../media/icons/mywork.png" alt="Atlas Studios My Work"></button></div>
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('about.php')"><img class="navBtnImg" src="../media/icons/about.png" alt="Atlas Studios About"></button></div>
+            <div class="navBtn"><button class="navBtnBtn" onclick="redirect('contact.php')"><img class="navBtnImg" src="../media/icons/contact.png" alt="Atlas Studios Contact"></button></div>
         </div>
     </nav>
 </body>

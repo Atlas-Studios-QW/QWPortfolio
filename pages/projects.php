@@ -9,7 +9,7 @@ include("../php/include.php");
     <div class="PJcontainer">
         <div class="PJcard">
             <div class="PJimg">
-                <img src="../media/icons/Atlas Industries.png">
+                <img src="../media/icons/AtlasStudios.png">
             </div>
             <div class="PJtitle">
                 <h2>Title</h2>

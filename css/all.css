@@ -65,13 +65,14 @@ nav {
     align-items: center;
     justify-content: center;
     display: flex;
-    height: 70vh;
+    height: 65vh;
     width: 100%;
 }
 
 .logo {
     object-fit: cover;
-    max-height: 70vh;
+    max-height: 65vh;
+    max-width: 100vw;
 }
 
 .navLocation {
