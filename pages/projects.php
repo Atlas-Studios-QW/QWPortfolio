@@ -12,6 +12,12 @@ $projects = $con->query("SELECT * FROM Projects");
         <?php
 
         while ($project = mysqli_fetch_assoc($projects)) {
+            $links = json_decode($project['Links']);
+            $link = $links[1][0];
+
+            $linkURL = $link[1];
+            $linkName = $link[0];
+
             echo "
             <div class='PJcard'>
                 <div class='PJimg'>
@@ -20,9 +26,9 @@ $projects = $con->query("SELECT * FROM Projects");
                 <div class='PJtitle'>
                     <h2>" . $project['Title'] . "</h2>
                 </div>
-                <p class='PJdescription'>" . $project['Title'] . "</p>
+                <p class='PJdescription'>" . $project['Description'] . "</p>
                 <button class='PJbtn PJreadmore' onclick='redirect(`projectView.php?projectID=" . $project['ID'] . "`)'>Find out more!</button>
-                <button class='PJbtn PJexternal' onclick='redirect('atlas-h.itch.io')'>External Link</button>
+                <button class='PJbtn PJexternal' onclick='redirect(`".$linkURL."`)'>".$linkName."</button>
             </div>";
         }
 

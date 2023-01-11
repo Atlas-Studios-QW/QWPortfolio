@@ -38,7 +38,7 @@ if (mysqli_connect_errno()) {
         <div class="navLocation">
             <h1 id="navLocationText"></h1>
             <script>
-                document.getElementById("navLocationText").innerHTML = location.href.split("/").slice(-1)[0].replace(".php","").split("?")[0].toUpperCase();
+                document.getElementById("navLocationText").innerHTML = location.href.split("/").slice(-1)[0].replace(".php", "").split("?")[0].toUpperCase();
             </script>
         </div>
         <div class="navContainer">

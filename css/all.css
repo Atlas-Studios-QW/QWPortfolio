@@ -10,6 +10,7 @@
 @font-face {
     font-family: GoodTimes;
     src: url("../media/fonts/goodtimes.otf") format("opentype");
+    font-display: swap
 }
 
 * {

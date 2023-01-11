@@ -35,7 +35,7 @@
     justify-content: space-evenly;
 }
 
-.DownloadLinks > a, .ExternalLinks > a {
+.DownloadLinks>a, .ExternalLinks>a {
     margin: 5px;
     font-family: GoodTimes;
     text-align: center;
@@ -47,11 +47,11 @@
     transition: 100ms ease;
 }
 
-.DownloadLinks > a {
+.DownloadLinks>a {
     width: calc(100%/3);
 }
 
-.PJlinks > a:hover {
+.PJlinks>a:hover {
     transform: scale(1.05);
 }
 
@@ -69,6 +69,15 @@
 .PJside {
     grid-column: 2;
     grid-row: 1/3;
+    position: relative;
+    background-color: var(--accent4);
+    margin-left: 10px;
+    box-sizing: border-box;
+}
+
+.PJside>img {
+    width: 90%;
+    margin: 5% 5% 0 5%;
 }
 
 .CLcard {
@@ -104,10 +113,12 @@
     box-sizing: border-box;
     padding: 70px 10px 10px 10px;
     color: var(--text);
+    font-size: 120%;
 }
 
 .CLlist {
     box-sizing: border-box;
     padding: 0 10px 10px 30px;
     color: var(--text);
+    font-size: 120%;
 }

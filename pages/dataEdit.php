@@ -18,7 +18,7 @@ function Upload($con, $target_dir)
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Check if image file is a actual image or fake image
+    // Check if image file is an actual image or fake image
     if (isset($_POST["submit"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if ($check !== false) {
@@ -44,10 +44,9 @@ function Upload($con, $target_dir)
 
     // Allow certain file formats
     if (
-        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif"
+        $imageFileType != "png"
     ) {
-        return "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        return "Sorry, only PNG files are allowed.";
         $uploadOk = 0;
     }
 
@@ -157,13 +156,17 @@ function Upload($con, $target_dir)
         <form method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Title" required>
             <textarea name="description" required placeholder="Description"></textarea>
+            <div id="downloadInputs"></div>
+            <button type="button" onclick="addDownloadInput()">Add Download Link</button><br>
+            <div id="linkInputs"></div>
+            <button type="button" onclick="addLinkInput()">Add External Link</button><br>
             <input type="submit" name="Project" value="Add New Card">
         </form>
 
         <!-- CHANGELOGS -->
         <h2>Changelogs</h2>
         <?php
-        $result = $con->query("SELECT * FROM ChangeLogs");
+        $result = $con->query("SELECT * FROM Changelogs");
         echo "<form method='POST'>";
         while ($row = mysqli_fetch_assoc($result)) {
             echo "ID: " . $row['ID'] . " | Title: " . $row['Title'] . " | <input type='submit' name='RemoveChangelog" . $row['ID'] . "' value='Remove' /><br>";
@@ -176,7 +179,7 @@ function Upload($con, $target_dir)
             <input type="text" name="title" placeholder="Title" required>
             <textarea name="description" required placeholder="Description"></textarea>
             <div id="changeInputs"></div>
-            <button type="button" onclick="addChangeInput()">Add Item</button>
+            <button type="button" onclick="addChangeInput()">Add Change</button><br>
             <input type="submit" name="Changelog" value="Add New Card">
         </form>
 
@@ -202,6 +205,9 @@ function Upload($con, $target_dir)
                 } else if (strpos($Key0, "Project") !== false) {
                     $ID = str_replace("RemoveProject", "", $Key0);
                     $con->query("DELETE FROM Projects WHERE ID = " . $ID);
+
+                    array_map('unlink', glob("../media/database/projects/$ID/*.*"));
+                    rmdir("../media/database/projects/$ID");
                 } else if (strpos($Key0, "Changelog") !== false) {
                     $ID = str_replace("RemoveChangelog", "", $Key0);
                     $con->query("DELETE FROM Changelogs WHERE ID = " . $ID);
@@ -214,9 +220,63 @@ function Upload($con, $target_dir)
                 } else if (isset($_POST['Post'])) {
                     $con->query("INSERT INTO Posts (Title, Description, content) VALUES ('" . $_POST['title'] . "','" . $_POST['description'] . "','" . $_POST['content'] . "')");
                 } else if (isset($_POST['Project'])) {
-                    $con->query("INSERT INTO Projects (Title, Description) VALUES ('" . $_POST['title'] . "','" . $_POST['description'] ."')");
+                    $Title = $_POST['title'];
+                    $Description = $_POST['description'];
+                    array_shift($_POST);
+                    array_shift($_POST);
+                    array_pop($_POST);
+
+                    $Links = array();
+                    $DownloadLinks = array();
+                    $ExternalLinks = array();
+                    $LinkValue = "";
+
+                    foreach ($_POST as $Key => $Value) {
+                        if ($Value != "") {
+                            if (strpos($Key, "download") !== false) {
+                                if ($LinkValue == "") {
+                                    $LinkValue = $Value;
+                                }
+                                else {
+                                    array_push($DownloadLinks,array($Value,$LinkValue));
+                                    $LinkValue = "";
+                                }
+                            }
+                            else {
+                                if ($LinkValue == "") {
+                                    $LinkValue = $Value;
+                                } else {
+                                    array_push($ExternalLinks, array($Value, $LinkValue));
+                                    $LinkValue = "";
+                                }
+                            }
+                        }
+                    }
+
+                    array_push($Links, $DownloadLinks);
+                    array_push($Links, $ExternalLinks);
+
+                    $Links = json_encode($Links);
+
+                    $con->query("INSERT INTO Projects (Title, Description, Links) VALUES ('$Title','$Description','$Links')");
+                    mkdir("../media/database/projects/".$ID);
                 } else if (isset($_POST['Changelog'])) {
-                    $con->query("INSERT INTO Changelogs (ProjectID, Title, Description) VALUES ('" . $_POST['projectID'] ."','" . $_POST['title'] . "','" . $_POST['description'] . "')");
+                    $ProjectID = $_POST['projectID'];
+                    $Title = $_POST['title'];
+                    $Description = $_POST['description'];
+                    array_shift($_POST);
+                    array_shift($_POST);
+                    array_shift($_POST);
+                    array_pop($_POST);
+
+                    $Changes = array();
+                    foreach ($_POST as $ChangeInput) {
+                        if ($ChangeInput != "") {
+                            array_push($Changes, $ChangeInput);
+                        }
+                    }
+                    $Changes = json_encode($Changes);
+                    $con->query("INSERT INTO Changelogs (ProjectID, Title, Description, Changes) VALUES ('$ProjectID','$Title','$Description','$Changes')");
                 }
             }
             echo "<script>window.history.replaceState( null, null, window.location.href );</script>";
