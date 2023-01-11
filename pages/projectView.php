@@ -38,8 +38,8 @@ $changelogs = $con->query("SELECT * FROM Changelogs WHERE ProjectID = " . $proje
             <h1>Changelogs</h1>
             <?php
             while ($log = mysqli_fetch_assoc($changelogs)) {
-                $date = new DateTimeImmutable($log['Date']);
-                date_format($date, 'd-m-Y');
+                $date = DateTime::createFromFormat('Y-m-d',$log['Date']);
+                $date = $date->format('d-m-Y');
                 echo "
                 <div class='CLcard'>
                 <h1 class='CLtitle'>".$log['Title']. "</h1>
