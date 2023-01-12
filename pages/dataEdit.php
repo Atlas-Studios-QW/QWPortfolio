@@ -218,7 +218,7 @@ function Upload($con, $target_dir)
                 } else if (isset($_POST['ContactCard'])) {
                     echo Upload($con, "../media/database/contact/");
                 } else if (isset($_POST['Post'])) {
-                    $con->query("INSERT INTO Posts (Title, Description, content) VALUES ('" . $_POST['title'] . "','" . $_POST['description'] . "',`" . $_POST['content'] . "`)");
+                    $con->query('INSERT INTO Posts (Title, Description, content) VALUES ("' . $_POST['title'] . '","' . $_POST['description'] . '","' . str_replace('"',"'",$_POST['content']) . '")');
                 } else if (isset($_POST['Project'])) {
                     $Title = $_POST['title'];
                     $Description = $_POST['description'];
