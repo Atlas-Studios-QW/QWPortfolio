@@ -4,57 +4,34 @@ using UnityEngine;
 
 public class TrackController : MonoBehaviour
 {
-    public bool StopTrack = false;
+    public List<GameObject> Stations = new List<GameObject>();
 
-    public List<GameObject> Options = new List<GameObject>();
+    private GameObject CurrentStation;
 
-    public GameObject TrackParent;
-
-    public GameObject StationPrefab;
-    private GameObject Station;
-
-    private void Start()
+    public void StationStop(int StationID)
     {
-        StartCoroutine(UpdateSpeed());
-    }
+        CurrentStation = Instantiate(Stations[StationID]);
 
-    public void ChooseOption(int Option)
-    {
-        StartCoroutine(ChooseOptionSequence(Option));
-    }
-
-    public IEnumerator ChooseOptionSequence(int Option)
-    {
-        StopTrack = false;
-        yield return new WaitForSeconds(5);
-        StopTrack = true;
-        Station = Instantiate(StationPrefab, TrackParent.transform);
-        Station.transform.position = new Vector3(0, 0, 10);
-    }
-
-    private IEnumerator UpdateSpeed()
-    {
         foreach (Transform Track in transform)
         {
-            TrackAnimation Animator = Track.GetComponent<TrackAnimation>();
-            if (Animator.Speed > 0 && StopTrack)
-            {
-                Animator.Speed -= 3f * Time.deltaTime;
-            }
-            else if (Animator.Speed < 5 && !StopTrack)
-            {
-                Animator.Speed += 3f * Time.deltaTime;
-            }
-            else if (Animator.Speed < 0)
-            {
-                Animator.Speed = 0;
-            }
-            else if (Animator.Speed > 5)
-            {
-                Animator.Speed = 5;
-            }
-            yield return null;
+            Track.gameObject.SetActive(false);
         }
-        StartCoroutine(UpdateSpeed());
     }
+
+    public void StationExit()
+    {
+        CurrentStation.GetComponent<Animator>().Play("StationExit");
+        StartCoroutine(ResetObjects());
+    }
+
+    public IEnumerator ResetObjects()
+    {
+        yield return new WaitForSeconds(4);
+        foreach (Transform Track in transform)
+        {
+            Track.gameObject.SetActive(true);
+        }
+        Destroy(CurrentStation);
+    }
+
 }
