@@ -9,12 +9,11 @@ public class Controller : MonoBehaviour
     public Camera Camera;
     public GameObject TrackParent;
     public GameObject PageBtnsParent;
-    public GameObject LeaveBtn;
-    public AudioSource Horn;
+    public AudioSource Horn; 
 
     private void Update()
     {
-        if(Input.anyKeyDown && !Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             Horn.Play();
         }
@@ -36,13 +35,13 @@ public class Controller : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         Camera.GetComponent<Animator>().Play("CameraPage");
-        yield return new WaitForSeconds(3);
-        LeaveBtn.SetActive(true);
+        yield return new WaitForSeconds(6);
+        CurrentStation.transform.GetChild(0).Find("Player").gameObject.SetActive(true);
     }
 
     public void StationExit()
     {
-        LeaveBtn.SetActive(false);
+        CurrentStation.transform.GetChild(0).Find("Player").gameObject.SetActive(false);
         CurrentStation.GetComponent<Animator>().Play("StationExit");
         Camera.GetComponent<Animator>().Play("CameraStation");
         StartCoroutine(OnStationExit());
