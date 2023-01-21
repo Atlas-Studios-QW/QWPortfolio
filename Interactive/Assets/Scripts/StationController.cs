@@ -6,6 +6,7 @@ public class StationController : MonoBehaviour
 {
     public GameObject Player;
     public GameObject LeaveHint;
+    public GameObject MovemementHint;
 
     private Rigidbody PlayerRB;
 
@@ -19,6 +20,7 @@ public class StationController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         InLeaveZone = false;
+        MovemementHint.SetActive(false);
     }
 
     private void Start()
