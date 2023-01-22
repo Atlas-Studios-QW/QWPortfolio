@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Card : MonoBehaviour
+{
+    private bool OnCard = false;
+    private bool CurrentState = false;
+
+    public string RedirectLink = "";
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnCard = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        OnCard = false;
+    }
+
+    private void Update()
+    {
+        if (OnCard && !CurrentState && transform.position.y == 0.065f)
+        {
+            CurrentState = true;
+            GetComponent<Animator>().Play("CardUp");
+        }
+        else if (!OnCard && CurrentState && transform.position.y == 0.565f)
+        {
+            CurrentState = false;
+            GetComponent<Animator>().Play("CardDown");
+        }
+
+        if (OnCard && Input.GetKeyDown(KeyCode.Return))
+        {
+            Application.OpenURL(RedirectLink);
+        }
+    }
+}
