@@ -30,16 +30,18 @@ public class StationController : MonoBehaviour
 
     private void Update()
     {
+        float MaxSpeed = 100f * Time.deltaTime;
+
         if (Player.activeInHierarchy)
         {
-            if (PlayerRB.velocity.x < 2 && PlayerRB.velocity.x > -2)
+            if (PlayerRB.velocity.x < MaxSpeed && PlayerRB.velocity.x > -MaxSpeed)
             {
-                PlayerRB.AddForce(new Vector3(Input.GetAxis("Horizontal") * 10, 0, 0));
+                PlayerRB.AddForce(new Vector3(Input.GetAxis("Horizontal") * MaxSpeed * 25, 0, 0));
             }
 
-            if (PlayerRB.velocity.z < 2 && PlayerRB.velocity.z > -2)
+            if (PlayerRB.velocity.z < MaxSpeed && PlayerRB.velocity.z > -MaxSpeed)
             {
-                PlayerRB.AddForce(new Vector3(0, 0, Input.GetAxis("Vertical") * 10));
+                PlayerRB.AddForce(new Vector3(0, 0, Input.GetAxis("Vertical") * MaxSpeed * 25));
             }
         }
 

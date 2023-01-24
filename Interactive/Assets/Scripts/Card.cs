@@ -21,12 +21,13 @@ public class Card : MonoBehaviour
 
     private void Update()
     {
-        if (OnCard && !CurrentState && transform.position.y == 0.065f)
+
+        if (OnCard && !CurrentState && transform.position.y < -0.4f)
         {
             CurrentState = true;
             GetComponent<Animator>().Play("CardUp");
         }
-        else if (!OnCard && CurrentState && transform.position.y == 0.565f)
+        else if (!OnCard && CurrentState && transform.position.y > 0.55f)
         {
             CurrentState = false;
             GetComponent<Animator>().Play("CardDown");

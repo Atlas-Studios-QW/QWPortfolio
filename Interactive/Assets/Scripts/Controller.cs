@@ -23,19 +23,18 @@ public class Controller : MonoBehaviour
 
     public void StationEnter(int StationID)
     {
-        CurrentStation = Instantiate(Stations[StationID]);
-
         PageBtnsParent.SetActive(false);
-        TrackParent.SetActive(false);
-
-        StartCoroutine(OnStationEnter());
+        StartCoroutine(OnStationEnter(StationID));
     }
 
-    private IEnumerator OnStationEnter()
+    private IEnumerator OnStationEnter(int StationID)
     {
+        while (TrackParent.transform.position.z < -1f) { yield return null; }
+        TrackParent.SetActive(false);
+        CurrentStation = Instantiate(Stations[StationID]);
         yield return new WaitForSeconds(2);
         Camera.GetComponent<Animator>().Play("CameraPage");
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(7);
         CurrentStation.transform.GetChild(0).Find("Player").gameObject.SetActive(true);
     }
 
@@ -49,13 +48,16 @@ public class Controller : MonoBehaviour
 
     private IEnumerator OnStationExit()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         TrackParent.SetActive(true);
-
         Destroy(CurrentStation);
 
         yield return new WaitForSeconds(1);
         PageBtnsParent.SetActive(true);
     }
 
+    public void Redirect(string Link)
+    {
+        Application.OpenURL(Link);
+    }
 }
