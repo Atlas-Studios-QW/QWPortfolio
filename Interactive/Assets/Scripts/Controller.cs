@@ -8,7 +8,7 @@ public class Controller : MonoBehaviour
 
     public Camera Camera;
     public GameObject TrackParent;
-    public GameObject PageBtnsParent;
+    public GameObject UI;
     public AudioSource Horn; 
 
     private void Update()
@@ -23,7 +23,7 @@ public class Controller : MonoBehaviour
 
     public void StationEnter(int StationID)
     {
-        PageBtnsParent.SetActive(false);
+        UI.GetComponent<Animator>().Play("UIOut");
         StartCoroutine(OnStationEnter(StationID));
     }
 
@@ -33,6 +33,7 @@ public class Controller : MonoBehaviour
         TrackParent.SetActive(false);
         CurrentStation = Instantiate(Stations[StationID]);
         yield return new WaitForSeconds(2);
+        UI.SetActive(false);
         Camera.GetComponent<Animator>().Play("CameraPage");
         yield return new WaitForSeconds(7);
         CurrentStation.transform.GetChild(0).Find("Player").gameObject.SetActive(true);
@@ -53,7 +54,8 @@ public class Controller : MonoBehaviour
         Destroy(CurrentStation);
 
         yield return new WaitForSeconds(1);
-        PageBtnsParent.SetActive(true);
+        UI.SetActive(true);
+        UI.GetComponent<Animator>().Play("UIIn");
     }
 
     public void Redirect(string Link)
