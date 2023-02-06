@@ -36,12 +36,12 @@ public class Controller : MonoBehaviour
         UI.SetActive(false);
         Camera.GetComponent<Animator>().Play("CameraPage");
         yield return new WaitForSeconds(7);
-        CurrentStation.transform.GetChild(0).Find("Player").gameObject.SetActive(true);
+        CurrentStation.transform.Find("Player").gameObject.SetActive(true);
     }
 
     public void StationExit()
     {
-        CurrentStation.transform.GetChild(0).Find("Player").gameObject.SetActive(false);
+        CurrentStation.transform.Find("Player").gameObject.SetActive(false);
         CurrentStation.GetComponent<Animator>().Play("StationExit");
         Camera.GetComponent<Animator>().Play("CameraStation");
         StartCoroutine(OnStationExit());

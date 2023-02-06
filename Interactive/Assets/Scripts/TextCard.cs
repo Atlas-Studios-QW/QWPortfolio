@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class TextCard : MonoBehaviour
 {
     private bool OnCard = false;
     private bool CurrentState = false;
-
-    public string RedirectLink = "";
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,17 +23,12 @@ public class Card : MonoBehaviour
         if (OnCard && !CurrentState && transform.position.y < -0.4f)
         {
             CurrentState = true;
-            GetComponent<Animator>().Play("CardUp");
+            GetComponent<Animator>().Play("TextCardUp");
         }
         else if (!OnCard && CurrentState && transform.position.y > 0.55f)
         {
             CurrentState = false;
-            GetComponent<Animator>().Play("CardDown");
-        }
-
-        if (OnCard && Input.GetKeyDown(KeyCode.Return))
-        {
-            Application.OpenURL(RedirectLink);
+            GetComponent<Animator>().Play("TextCardDown");
         }
     }
 }
