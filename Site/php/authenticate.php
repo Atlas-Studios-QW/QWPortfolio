@@ -3,7 +3,7 @@
 
     $DATABASE_HOST = 'localhost';
     $DATABASE_USER = 'u136788p130946_admin';
-    $DATABASE_PASS = '12345678';
+    $DATABASE_PASS = 'AtlasStudios7921';
     $DATABASE_NAME = 'u136788p130946_Portfolio';
     
     $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
